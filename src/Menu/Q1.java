@@ -14,6 +14,7 @@ public class Q1 {
     // 객체 -> 메모리로부터 크기를 할당받지는 않았지만, 그 클래스의 정보를 가져온 것
     // 인스턴스 -> 클래스로부터 정보를 가져왔음과 동시에, 메모리로부터 크기를 할당받은 것
 
+    // 다형성(클래스의 형변환) 을 구현한 코드이다.
     public static Scanner readFile(FileManager fileManager, String fileName) {
         return fileManager.readFile(fileName);
     }
