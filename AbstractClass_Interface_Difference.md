@@ -2,7 +2,7 @@
 
 ## Interface 와 Abstract Class (상속 클래스) 와의 차이점
 
-1.  Interface 는 자바에서 허락을 해주지 않는 다중 상속을 허용한다.
+1. Interface 는 자바에서 허락을 해주지 않는 다중 상속을 허용한다.
 
 2. Abstract Class 는 다중 상속을 허락해주지 않으며, 단 하나의 자식 클래스만 상속 받을 수 있도록 허용한다.
 
