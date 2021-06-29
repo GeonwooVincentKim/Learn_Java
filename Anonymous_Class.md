@@ -82,4 +82,36 @@ public static void main(String[] args){
 }
 ```
 
-- 
+- `Anonymous Class(Anonymous Object)` 를 사용했을 때 다음과 같이 코드도 간결해지고, 불필요하게 남용되어 사용되던 `자식 클래스 Instance`를 보다 덜 사용하여 코드의 가독성도 함께 높여주는 역할을 한다.
+
+```java
+import static java.lang.System.out;
+
+class TestParant{
+    void test(){
+        out.println("Hello Parent Class");
+    }
+}
+
+
+public static void main(String[] args){
+    TestParent testParent = new TestParent();
+    testParent.test();
+    
+    TestParent testParent1 = new TestParent(){
+        @Override
+        void test(){
+            out.println("Hello Child1 Class");
+        }
+    };
+    testParent1.test();
+
+    TestParent testParent2 = new TestParent(){
+        @Override
+        void test(){
+            out.println("Hello Child2 Class");
+        }
+    };
+    testParent2.test();
+}
+```
