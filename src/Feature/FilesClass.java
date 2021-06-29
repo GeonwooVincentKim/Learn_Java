@@ -4,10 +4,11 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public abstract class FilesClass {
-    private Scanner fileReader;
-    private FileWriter fileWriter;
-    private String fileName;
-    private String result;
+    // 같은 패키지 내에 속해 있는 자식 클래스들이 접근하여 사용할 수 있는 접근 메서드, protected
+    protected Scanner fileReader;
+    protected FileWriter fileWriter;
+    protected String fileName;
+    protected String result;
 
     public FilesClass() {
     }
