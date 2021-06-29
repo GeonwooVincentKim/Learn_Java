@@ -22,18 +22,37 @@ public class Q1 {
         fileManager.writeFile(result, fileName);
     }
 
-    public static String getData(int readLine) {
-        String result = "";
-
+    // 1. 임의의 값(random)들을 사용자가 가지고 오고 싶어하는 개수만큼 originalArray 에 저장한다.
+    // 단, 범위는 10 ~ 50 으로 고정한다.
+    public static int[] getOriginalArray(int readLine) {
         int[] originalArray = new int[readLine];
 
         for (int i = 0; i < readLine; i++) {
             originalArray[i] = (int) (Math.random() * (50 - 10 + 1)) + 10;
         }
 
+        return originalArray;
+    }
+
+    // 2. 임의의 값을 저장한 originalArray 안에 저장된 인덱스(데이터)의 목록들을 출력한다.
+    public static String printOriginalArray(int[] originalArray) {
+        String printArray = "";
+
         for (int i = 0; i < originalArray.length; i++) {
-            out.print(originalArray[i] + " ");
+            printArray += originalArray[i] + " ";
         }
+
+        return printArray;
+    }
+
+    public static String getData(int readLine) {
+        String result = "";
+
+        int[] originalArray = getOriginalArray(readLine);
+        String printArray = printOriginalArray(originalArray);
+
+        result = printArray;
+        out.println(result);
 
         return result;
     }
