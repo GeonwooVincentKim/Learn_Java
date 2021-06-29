@@ -93,7 +93,6 @@ class TestParant{
     }
 }
 
-
 public static void main(String[] args){
     TestParent testParent = new TestParent();
     testParent.test();
