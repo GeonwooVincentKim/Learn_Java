@@ -60,9 +60,9 @@ public class Q1 {
                 out.print(countArray[i] + " ");
             }
 
-            if (originalArray.equals(countArray)) {
+            // if (originalArray.equals(countArray)) {
 
-            }
+            // }
         }
 
         return countArray;
@@ -79,19 +79,83 @@ public class Q1 {
         }
     }
 
+    // 4. 랜덤된 수의 중복 값을 포함하고 있는 originalArray 와 랜덤된 수의 중복 된 값들을 뺀 countArray 와 비교한다.
+    // 만약 중복되는 값이 존재할 경우, 중복되는 수의 출현 횟수가 표시되는 count 의 값을 1씩 증가를 시킨 후,
+    // 출현 빈도 수에 따라 숫자들을 오름차순 정렬한다.
+    // 반대로 중복되는 숫자(값)가(이) 존재하지 않을 경우, 가장 큰 수부터 차례대로 오름차순으로 정렬한다.
+    public static int[] getSortArray(int[] originalArray, int[] countArray) {
+        int[] sortArray = new int[countArray.length];
+
+        int currentCount = 0;
+        int nextCount = 0;
+
+        int currentValue = 0;
+        int nextValue = 0;
+
+        for (int i = 0; i < countArray.length; i++) {
+            for (int j = i + 1; j < countArray.length; j++) {
+                currentValue = countArray[i];
+                nextValue = countArray[j];
+
+                // 중복 값이 제거되지 않은 originalArray 와 중복 값이 제거된 countArray 를 가지고 온 후,
+                // 서로 비교하면서 중복되는 수들을 찾아낼 때마다 1씩 증가시켜 가장 많은 빈도 수를 가지고 있는 수부터
+                // 가장 적은 빈도 수를 가지고 있는 수까지 차례대로 나열해주는 함수이다.
+                currentCount = CustomList.countDuplicateValue(originalArray, countArray[i]);
+                nextCount = CustomList.countDuplicateValue(originalArray, countArray[j]);
+
+                if (currentCount < nextCount) {
+                    swapArrayValue(originalArray, i, j);
+                    swapArrayValue(countArray, i, j);
+
+                    // 배열 안에 있는 정보들 뿐만이 아니라 배열의 메모리 주소까지 모두 복사한다.
+                    sortArray[i] = countArray[i];
+                } else if (currentCount == nextCount && currentValue < nextValue) {
+                    swapArrayValue(originalArray, i, j);
+                    swapArrayValue(countArray, i, j);
+
+                    // 배열 안에 있는 정보들 뿐만이 아니라 배열의 메모리 주소까지 모두 복사한다.
+                    sortArray[i] = countArray[i];
+                }
+            }
+        }
+
+        return sortArray;
+    }
+
+    // 4-1. 앞에 있는 수와 뒤에 있는 수를 비교하면서, 비교한 값 중 큰 값은 앞으로, 작은 값은 뒤쪽으로 배열 내에서의 위치를 바꾸어준다.
+    public static void swapArrayValue(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
     public static String getData(int readLine) {
         String result = "";
 
         int[] originalArray = getOriginalArray(readLine);
-        String printArray = printOriginalArray(originalArray);
+        // String printArray = printOriginalArray(originalArray);
 
         int[] countArray = getCountArray(originalArray);
-        out.println(countArray);
+        int[] sortArray = getSortArray(originalArray, countArray);
+        out.println(sortArray);
 
-        result = printArray + "\n";
+        result = printArray(originalArray, countArray, sortArray);
+
+        // result = printArray + "\n";
         out.println(result);
 
         return result;
+    }
+
+    private static String printArray(int[] originalArray, int[] countArray, int[] sortArray) {
+        String printResult = "";
+
+        for (int i = 0; i < 5; i++) {
+            out.println("#" + (i + 1) + " " + sortArray[i] + " " + "("
+                    + CustomList.countDuplicateValue(originalArray, countArray[i]) + ")");
+        }
+
+        return printResult;
     }
 
     public static void q1_main(int userInput) {
