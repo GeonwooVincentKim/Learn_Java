@@ -104,14 +104,14 @@ public class Q1 {
                 nextCount = CustomList.countDuplicateValue(originalArray, countArray[j]);
 
                 if (currentCount < nextCount) {
-                    swapArrayValue(originalArray, i, j);
-                    swapArrayValue(countArray, i, j);
+                    CustomList.swapArrayValue(originalArray, i, j);
+                    CustomList.swapArrayValue(countArray, i, j);
 
                     // 배열 안에 있는 정보들 뿐만이 아니라 배열의 메모리 주소까지 모두 복사한다.
                     sortArray[i] = countArray[i];
                 } else if (currentCount == nextCount && currentValue < nextValue) {
-                    swapArrayValue(originalArray, i, j);
-                    swapArrayValue(countArray, i, j);
+                    CustomList.swapArrayValue(originalArray, i, j);
+                    CustomList.swapArrayValue(countArray, i, j);
 
                     // 배열 안에 있는 정보들 뿐만이 아니라 배열의 메모리 주소까지 모두 복사한다.
                     sortArray[i] = countArray[i];
@@ -122,11 +122,16 @@ public class Q1 {
         return sortArray;
     }
 
-    // 4-1. 앞에 있는 수와 뒤에 있는 수를 비교하면서, 비교한 값 중 큰 값은 앞으로, 작은 값은 뒤쪽으로 배열 내에서의 위치를 바꾸어준다.
-    public static void swapArrayValue(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    // 5. 전체 배열을 출력한다.
+    public static String printArray(int[] originalArray, int[] countArray, int[] sortArray) {
+        String printResult = "";
+
+        for (int i = 0; i < 5; i++) {
+            out.println("#" + (i + 1) + " " + sortArray[i] + " " + "("
+                    + CustomList.countDuplicateValue(originalArray, countArray[i]) + ")");
+        }
+
+        return printResult;
     }
 
     public static String getData(int readLine) {
@@ -145,17 +150,6 @@ public class Q1 {
         out.println(result);
 
         return result;
-    }
-
-    private static String printArray(int[] originalArray, int[] countArray, int[] sortArray) {
-        String printResult = "";
-
-        for (int i = 0; i < 5; i++) {
-            out.println("#" + (i + 1) + " " + sortArray[i] + " " + "("
-                    + CustomList.countDuplicateValue(originalArray, countArray[i]) + ")");
-        }
-
-        return printResult;
     }
 
     public static void q1_main(int userInput) {

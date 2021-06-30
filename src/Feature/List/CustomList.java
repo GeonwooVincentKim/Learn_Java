@@ -56,4 +56,10 @@ public class CustomList {
         return count;
     }
 
+    // 4-1. 앞에 있는 수와 뒤에 있는 수를 비교하면서, 비교한 값 중 큰 값은 앞으로, 작은 값은 뒤쪽으로 배열 내에서의 위치를 바꾸어준다.
+    public static void swapArrayValue(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }
