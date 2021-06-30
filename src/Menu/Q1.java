@@ -45,13 +45,72 @@ public class Q1 {
         return printArray;
     }
 
+    // 3. OriginalArray 내 중복된 값들을 제거한 후, 중복되지 않은 값들과 제거된 값들을 CountArray 에 저장한다.
+    public static int[] getCountArray(int[] originalArray) {
+        int[] countArray = new int[originalArray.length];
+        out.println();
+        // out.println(countArray);
+
+        for (int i = 0; i < originalArray.length; i++) {
+            // 만약 값이 중복되지 않았거나, 또는 중복되었지만, 특정 값이 중복된 수들 중, 가장 나중에 출현한 값을 확인하였을 때,
+            // countArray 에 저장한다.
+            if (!checkDuplicateValue(countArray, originalArray[i])) {
+                countArray[i] = Integer.valueOf(originalArray[i]);
+                out.print(countArray[i] + " ");
+            }
+        }
+
+        return countArray;
+    }
+
+    // 3-1. 사용자가 입력한 수만큼 임의의 수들을 저장한 배열에 중복된 값이 있는지 확인하고, 만약 중복된 값이 있다면 즉시 중복된 값을
+    // 제거한다.
+    public static boolean checkDuplicateValue(int[] getArray, int getArrayValue) {
+
+        for (int i = 0; i < getArray.length; i++) {
+            if (getArray[i] == getArrayValue) {
+                // 만약 현재 인덱스에 속한 값이 같은 배열 내에 있는 다른 수와 겹친다면, true 를 Return 하여 존재한다는 여부를 알린다.
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 3-2. 사용자가 입력한 수만큼 임의의 수들을 저장한 배열에 중복된 값이 있는지 확인하고, 만약 중복된 값이 있다면 그 특정 중복 값에
+    // 대해서 몇 번 출현했는지 알려준다.
+    public static int countDuplicateValue(int[] getArray, int getArrayValue) {
+        int count = 0;
+
+        for (int i = 0; i < getArray.length; i++) {
+            if (getArray[i] == getArrayValue) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    // 3-3. 사용자가 입력한 수만큼 임의의 수들을 저장한 배열과 그 배열을 출력하는 배열이 서로 같은지 확인한다. (서로 같은 객체를 사용하고
+    // 있는지에 대한 여부를 확인한다.)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Q1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static String getData(int readLine) {
         String result = "";
 
         int[] originalArray = getOriginalArray(readLine);
         String printArray = printOriginalArray(originalArray);
 
-        result = printArray;
+        int[] countArray = getCountArray(originalArray);
+        out.println(countArray);
+
+        result = printArray + "\n";
         out.println(result);
 
         return result;
