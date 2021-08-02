@@ -169,7 +169,7 @@ public class Q1 {
 
         // fileManager 의 Instance 를 만들어준다.
         FileManager fileManager = new FileManager(fileReader, fileWriter, fileName, result);
-        String getResult = "";
+        // String getResult = "";
 
         // 파일로 읽어온 각 파일에서 추출하고자 하는 데이터의 개수를 입력받기 전, 0으로 초기화시켜준다.
         int getFileLines = 0;
@@ -178,13 +178,11 @@ public class Q1 {
         if (userQ1Select == 1) {
             fileReader = readFile(fileManager, readFileName);
             getFileLines = Integer.parseInt(fileReader.nextLine());
-            getResult = getData(getFileLines);
-            writeFile(fileManager, getResult, writeFileName);
+            getResult(writeFileName, fileManager, getFileLines);
         } else if (userQ1Select == 2) {
             fileReader = new Scanner(System.in);
             getFileLines = fileReader.nextInt();
-            getResult = getData(getFileLines);
-            writeFile(fileManager, getResult, writeFileName);
+            getResult(writeFileName, fileManager, getFileLines);
         } else {
             out.println("프로그램 종료");
             System.exit(0);
@@ -195,5 +193,11 @@ public class Q1 {
         // 의미한다.
         // 그러나 Scanner 는 솔직히 말하자면 Buffer 하고 큰 연동은 없다.
         sc.close();
+    }
+
+    private static void getResult(String writeFileName, FileManager fileManager, int getFileLines) {
+        String getResult;
+        getResult = getData(getFileLines);
+        writeFile(fileManager, getResult, writeFileName);
     }
 }
